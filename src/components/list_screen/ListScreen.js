@@ -55,7 +55,8 @@ export class ListScreen extends Component {
                     deleteItem={this.props.deleteItem}
                     moveItemUp={this.props.moveItemUp}
                     moveItemDown={this.props.moveItemDown}
-                    goItemScreen={this.props.goItemScreen} />
+                    goItemScreen={this.props.goItemScreen}
+                    goEditItemScreen={this.props.goEditItemScreen} />
             </div>
         )
     }

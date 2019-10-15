@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export class ItemScreen extends Component {
     state = {
-        addItem: true,
+        index: -1,
         description: "",
         assignedTo: "",
         dueDate: "",
@@ -11,11 +11,11 @@ export class ItemScreen extends Component {
     }
     
     onCancel = () => {
-        this.props.goHome()
+        this.props.goListScreen()
     }
 
     onSubmit = () => {
-        this.props.onSubmit(this.state.addItem, this.state.description, this.state.assignedTo, this.state.dueDate, this.state.completed)
+        this.props.onSubmitAdd(this.state.description, this.state.assignedTo, this.state.dueDate, this.state.completed)
     }
 
     changeDescription = (e) => {

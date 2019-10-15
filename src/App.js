@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import testTodoListData from './TestTodoListData.json'
 import HomeScreen from './components/home_screen/HomeScreen'
 import ItemScreen from './components/item_screen/ItemScreen'
+import EditItemScreen from './components/item_screen/EditItemScreen'
 import ListScreen from './components/list_screen/ListScreen'
 
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
   LIST_SCREEN: "LIST_SCREEN",
-  ITEM_SCREEN: "ITEM_SCREEN"
+  ITEM_SCREEN: "ITEM_SCREEN",
+  EDIT_ITEM_SCREEN: "EDIT_ITEM_SCREEN"
 }
 
 class App extends Component {
   state = {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
-    currentList: null
+    currentList: null,
+    currentItem: -1
   }
 
   goHome = () => {
@@ -24,6 +27,15 @@ class App extends Component {
 
   goItemScreen = () => {
     this.setState({currentScreen: AppScreen.ITEM_SCREEN});
+  }
+
+  goEditItemScreen = (key) => {
+    this.setState({ currentItem: key });
+    this.setState({currentScreen: AppScreen.EDIT_ITEM_SCREEN});
+  }
+
+  goListScreen = () => {
+    this.setState({currentScreen: AppScreen.LIST_SCREEN});
   }
 
   loadList = (todoListToLoad) => {
@@ -41,13 +53,11 @@ class App extends Component {
   }
 
   deleteList = (key) => {
-    console.log(key);
     this.setState({ todoLists: [...this.state.todoLists.filter(todo => todo.key !== key)]});
     this.setState({ currentScreen: AppScreen.HOME_SCREEN});
   }
 
   deleteItem = (key) => {
-    console.log(key);
     this.state.currentList.items = this.state.currentList.items.filter(item => item.key !== key);
     this.reIndexListItems();
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
@@ -69,15 +79,23 @@ class App extends Component {
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
-  onSubmit = (addItem, description, assignedTO, dueDate, completed) => {
-    console.log(addItem);
-    console.log(description);
-    console.log(assignedTO);
-    console.log(dueDate);
-    console.log(completed);
+  onSubmitAdd = (description, assignedTO, dueDate, completed) => {
     this.state.currentList.items.push({
       
         "key": this.state.currentList.items.length,
+        "description": description,
+        "due_date": dueDate,
+        "assigned_to": assignedTO,
+        "completed": completed
+      
+    })
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
+  onSubmitEdit = (description, assignedTO, dueDate, completed) => {
+    this.state.currentList.items[this.state.currentItem] = ({
+      
+        "key": this.state.currentItem,
         "description": description,
         "due_date": dueDate,
         "assigned_to": assignedTO,
@@ -97,6 +115,7 @@ class App extends Component {
         return <ListScreen
           goHome={this.goHome.bind(this)}
           goItemScreen={this.goItemScreen}
+          goEditItemScreen={this.goEditItemScreen}
           todoList={this.state.currentList}
           deleteList={this.deleteList}
           deleteItem={this.deleteItem}
@@ -105,7 +124,13 @@ class App extends Component {
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
           goHome={this.goHome.bind(this)}
-          onSubmit = {this.onSubmit} />;
+          goListScreen={this.goListScreen}
+          onSubmitAdd={this.onSubmitAdd} />;
+      case AppScreen.EDIT_ITEM_SCREEN:
+        return <EditItemScreen
+          onSubmitEdit={this.onSubmitEdit}
+          goListScreen={this.goListScreen}
+          appState={this.state} />;
       default:
         return <div>ERROR</div>;
     }

@@ -19,7 +19,8 @@ export class ListItemsTable extends Component {
                                 todoList={this.props.todoList} 
                                 deleteItem={this.props.deleteItem}
                                 moveItemUp={this.props.moveItemUp}
-                                moveItemDown={this.props.moveItemDown} />
+                                moveItemDown={this.props.moveItemDown}
+                                goEditItemScreen={this.props.goEditItemScreen} />
                         ))
                     }
                 </div>
