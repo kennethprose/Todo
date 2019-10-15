@@ -23,7 +23,7 @@ export class ListTrash extends Component {
             <div>
                 <div id="list_trash" onClick={this.onClick.bind(this)}>&#128465;</div>
                 { this.state.showPopup ?
-                    <div id="popup">
+                    <div id="popup" className='showing'>
                         <div id="popup_content" className='showing'>
                             <div id="popup_question1">Delete List?</div>
                             <strong id="popup_question2">Are you sure you want to delete this list?</strong>
