@@ -241,3 +241,43 @@ body {
 #popup_no:hover {
     background-color: darkgray;
 }
+
+.listItemButtons {
+  position: absolute;
+  top: -20%;
+  right: 5px;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 5px;
+  margin: 1%;
+  background-color: #669966;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+}
+
+.listItemButtonsDisabled {
+  position: absolute;
+  top: -20%;
+  right: 5px;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 5px;
+  margin: 1%;
+  background-color: #D0D0D0;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+}
+
+#upButton {
+  right: 105px;
+}
+
+#downButton {
+  right: 55px;
+}
+
+#deleteButton {
+  right: 5px;
+}
