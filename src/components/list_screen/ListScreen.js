@@ -25,9 +25,6 @@ export class ListScreen extends Component {
     onChangeOwner = (e) => {
         e.preventDefault();
         this.props.todoList.owner = e.target.value; }
-    deleteList() {
-        console.log("test");
-    }
     render() {
         return (
             <div id="todo_list">
@@ -53,7 +50,7 @@ export class ListScreen extends Component {
                             onChange={this.onChangeOwner} />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} />
+                <ListItemsTable todoList={this.props.todoList} deleteItem={this.props.deleteItem} />
             </div>
         )
     }

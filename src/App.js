@@ -29,10 +29,24 @@ class App extends Component {
     console.log("currentScreen: " + this.state.currentScreen);
   }
 
+  reIndexListItems = () => {
+    var i;
+    for(i=0; i<this.state.currentList.items.length; i++) {
+      this.state.currentList.items[i].key = i;
+    }
+  }
+
   deleteList = (key) => {
     console.log(key);
     this.setState({ todoLists: [...this.state.todoLists.filter(todo => todo.key !== key)]});
     this.setState({ currentScreen: AppScreen.HOME_SCREEN});
+  }
+
+  deleteItem = (key) => {
+    console.log(key);
+    this.state.currentList.items = this.state.currentList.items.filter(item => item.key !== key);
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
   render() {
@@ -45,7 +59,8 @@ class App extends Component {
         return <ListScreen
           goHome={this.goHome.bind(this)}
           todoList={this.state.currentList}
-          deleteList={this.deleteList} />;
+          deleteList={this.deleteList}
+          deleteItem={this.deleteItem} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen />;
       default:
