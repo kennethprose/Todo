@@ -28,8 +28,10 @@ export class ListScreen extends Component {
     render() {
         return (
             <div id="todo_list">
-                <ListHeading goHome={this.props.goHome} />
-                <ListTrash />
+                <div id="list_heading">
+                    <ListHeading goHome={this.props.goHome} />
+                    <ListTrash />
+                </div>
                 <div id="list_details_container">
                     <div id="list_details_name_container" className="text_toolbar">
                         <span id="list_name_prompt">Name:</span>

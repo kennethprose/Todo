@@ -44,12 +44,15 @@ body {
 
 /* LIST SCREEN CONTROLS */
 #list_heading {
-  height: 100px;
+  height: 70px;
+  width: 100px;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 #list_trash {
   position: absolute;
-  left: 85%;
-  width: 15%;
+  right: 10px;
+  width: 50px;
   text-align: right;
   top: 0%;
 }
@@ -68,6 +71,7 @@ body {
 #list_owner_prompt {}
 #list_owner_textfield {}
 #list_items_container {
+  position: relative;
 }
 
 /* LIST SCREEN CLASSES */
