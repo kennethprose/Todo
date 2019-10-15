@@ -5,6 +5,9 @@ import ListTrash from './ListTrash'
 import PropTypes from 'prop-types';
 
 export class ListScreen extends Component {
+    state={
+        showPopup: false
+    }
     getListName() {
         if (this.props.todoList) {
             let name = this.props.todoList.name;
@@ -25,12 +28,15 @@ export class ListScreen extends Component {
     onChangeOwner = (e) => {
         e.preventDefault();
         this.props.todoList.owner = e.target.value; }
+    onDeleteClick = () => {
+        this.state.showPopup = true;
+    }
     render() {
         return (
             <div id="todo_list">
                 <div>
                     <ListHeading goHome={this.props.goHome} />
-                    <ListTrash />
+                    <ListTrash onDeleteClick={this.onDeleteClick}/>
                 </div>
                 <div id="list_details_container">
                     <div id="list_details_name_container" className="text_toolbar">

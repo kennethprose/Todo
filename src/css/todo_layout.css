@@ -13,7 +13,9 @@ body {
   grid-row-gap: 15px;
   padding: 5px 10px 5px 10px;
 }
-#todo_list {}
+#todo_list {
+  z-index: 1;
+}
 #todo_item {}
 
 /* HOME SCREEN CONTROLS */
@@ -148,4 +150,83 @@ body {
 }
 .item_input {
   grid-column: 2 / 4;
+}
+
+
+#popup {
+    position: fixed;
+    left: 25%;
+    top: 25%;
+    width: 50%;
+    height: 50%;
+    visibility: visible;
+    transform: scale(1.1);
+    z-index: 5;
+}
+
+#popup_visible {
+    visibility: visible;
+}
+
+#popup_content {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(250, 246, 217);
+    width: 400px;
+    height: 210px;
+    padding-top: 10px;
+    padding-left: 10px;
+    transition: all 0.5s ease;
+}
+
+#popup_content.showing {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(250, 246, 217);
+    width: 400px;
+    height: 210px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#popup_options {
+    display: grid;
+    grid-template-columns: 60px 2fr;
+    grid-gap: 10px;
+}
+
+#popup_yes {
+    float: right;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+    background-color: rgb(230, 230, 230);
+}
+
+#popup_no {
+    float: right;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+    background-color: rgb(230, 230, 230);
+}
+
+#popup_yes:hover {
+    background-color: darkgray;
+}
+
+#popup_no:hover {
+    background-color: darkgray;
 }
