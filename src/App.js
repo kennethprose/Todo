@@ -49,6 +49,22 @@ class App extends Component {
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
+  moveItemUp = (key) => {
+    var temp = this.state.currentList.items[key];
+    this.state.currentList.items[key] = this.state.currentList.items[key - 1];
+    this.state.currentList.items[key - 1] = temp;
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
+  moveItemDown = (key) => {
+    var temp = this.state.currentList.items[key];
+    this.state.currentList.items[key] = this.state.currentList.items[key + 1];
+    this.state.currentList.items[key + 1] = temp;
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
   render() {
     switch(this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
@@ -60,7 +76,9 @@ class App extends Component {
           goHome={this.goHome.bind(this)}
           todoList={this.state.currentList}
           deleteList={this.deleteList}
-          deleteItem={this.deleteItem} />;
+          deleteItem={this.deleteItem}
+          moveItemUp={this.moveItemUp}
+          moveItemDown={this.moveItemDown} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen />;
       default:

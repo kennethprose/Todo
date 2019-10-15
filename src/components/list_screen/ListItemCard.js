@@ -6,11 +6,11 @@ export class ListItemCard extends Component {
     }
 
     moveUp = (key) => {
-        console.log(this.props.listItem.key)
+        this.props.moveItemUp(this.props.listItem.key)
     }
 
     moveDown = (key) => {
-        console.log("dick and balls")
+        this.props.moveItemDown(this.props.listItem.key)
     }
 
     deleteItem = () => {

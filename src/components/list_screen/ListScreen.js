@@ -50,7 +50,11 @@ export class ListScreen extends Component {
                             onChange={this.onChangeOwner} />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} deleteItem={this.props.deleteItem} />
+                <ListItemsTable 
+                    todoList={this.props.todoList} 
+                    deleteItem={this.props.deleteItem}
+                    moveItemUp={this.props.moveItemUp}
+                    moveItemDown={this.props.moveItemDown} />
             </div>
         )
     }

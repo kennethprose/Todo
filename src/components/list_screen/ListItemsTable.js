@@ -13,7 +13,13 @@ export class ListItemsTable extends Component {
                 <div>
                     {
                         this.props.todoList.items.map((todoItem)=>(
-                            <ListItemCard key={todoItem.key} listItem={todoItem} todoList={this.props.todoList} deleteItem={this.props.deleteItem} />
+                            <ListItemCard 
+                                key={todoItem.key} 
+                                listItem={todoItem} 
+                                todoList={this.props.todoList} 
+                                deleteItem={this.props.deleteItem}
+                                moveItemUp={this.props.moveItemUp}
+                                moveItemDown={this.props.moveItemDown} />
                         ))
                     }
                 </div>
