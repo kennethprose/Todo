@@ -22,6 +22,10 @@ class App extends Component {
     this.setState({currentList: null});
   }
 
+  goItemScreen = () => {
+    this.setState({currentScreen: AppScreen.ITEM_SCREEN});
+  }
+
   loadList = (todoListToLoad) => {
     this.setState({currentScreen: AppScreen.LIST_SCREEN});
     this.setState({currentList: todoListToLoad});
@@ -65,6 +69,24 @@ class App extends Component {
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
+  onSubmit = (addItem, description, assignedTO, dueDate, completed) => {
+    console.log(addItem);
+    console.log(description);
+    console.log(assignedTO);
+    console.log(dueDate);
+    console.log(completed);
+    this.state.currentList.items.push({
+      
+        "key": this.state.currentList.items.length,
+        "description": description,
+        "due_date": dueDate,
+        "assigned_to": assignedTO,
+        "completed": completed
+      
+    })
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
   render() {
     switch(this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
@@ -74,13 +96,16 @@ class App extends Component {
       case AppScreen.LIST_SCREEN:            
         return <ListScreen
           goHome={this.goHome.bind(this)}
+          goItemScreen={this.goItemScreen}
           todoList={this.state.currentList}
           deleteList={this.deleteList}
           deleteItem={this.deleteItem}
           moveItemUp={this.moveItemUp}
           moveItemDown={this.moveItemDown} />;
       case AppScreen.ITEM_SCREEN:
-        return <ItemScreen />;
+        return <ItemScreen
+          goHome={this.goHome.bind(this)}
+          onSubmit = {this.onSubmit} />;
       default:
         return <div>ERROR</div>;
     }

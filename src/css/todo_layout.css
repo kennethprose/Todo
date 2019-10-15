@@ -125,7 +125,7 @@ body {
 }
 .list_item_add_card {
   text-align: center;
-  vertical-align: center;
+  top: 15px;
 }
 
 /* ITEM SCREEN CONTROLS */
@@ -244,7 +244,7 @@ body {
 
 .listItemButtons {
   position: absolute;
-  top: -20%;
+  top: -15%;
   right: 5px;
   text-align: center;
   font-size: 30px;
@@ -258,7 +258,7 @@ body {
 
 .listItemButtonsDisabled {
   position: absolute;
-  top: -20%;
+  top: -15%;
   right: 5px;
   text-align: center;
   font-size: 30px;
@@ -280,4 +280,43 @@ body {
 
 #deleteButton {
   right: 5px;
+}
+
+#list_item_add_card {
+  height: 250px;
+  width: 100%;
+  background-color: #E6E6E6;
+}
+
+#description_text, #assignedTo_text, #date_text {
+  position: relative;
+  font-size: 20px;
+  width: 80%;
+  right: 0;
+  margin-top: 12px;
+}
+
+#complete_checkbox {
+  position: relative;
+  left: 5%;
+  transform: scale(2);
+  margin-top: 18px;
+}
+
+#add_submit_button {
+  transform: scale(1.25);
+  margin-left: 20px;
+  border-radius: 5px;
+  position: relative;
+  top: 20px;
+  left: 0px;
+  visibility: visible;
+}
+
+#cancel_button {
+  transform: scale(1.25);
+  margin-left: 20px;
+  border-radius: 5px;
+  position: relative;
+  top: 20px;
 }

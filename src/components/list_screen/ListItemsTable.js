@@ -23,6 +23,7 @@ export class ListItemsTable extends Component {
                         ))
                     }
                 </div>
+                <div onClick={this.props.goItemScreen} className="list_item_add_card">+</div>
             </div>
         )
     }
