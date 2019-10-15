@@ -15,7 +15,7 @@ export class ListTrash extends Component {
         this.setState({
             showPopup: !this.state.showPopup
         })
-
+        this.props.deleteList(this.props.todoList.key)
     }
     
     render() {
