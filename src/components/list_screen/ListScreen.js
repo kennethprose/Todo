@@ -63,7 +63,10 @@ export class ListScreen extends Component {
                     moveItemUp={this.props.moveItemUp}
                     moveItemDown={this.props.moveItemDown}
                     goItemScreen={this.props.goItemScreen}
-                    goEditItemScreen={this.props.goEditItemScreen} />
+                    goEditItemScreen={this.props.goEditItemScreen}
+                    sortByTask={this.props.sortByTask}
+                    sortByDueDate={this.props.sortByDueDate}
+                    sortByCompleted={this.props.sortByCompleted} />
             </div>
         )
     }

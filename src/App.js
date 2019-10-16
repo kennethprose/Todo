@@ -105,6 +105,64 @@ class App extends Component {
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
+  sortByTask = (bool) => {
+    if(bool) {
+      this.state.currentList.items.sort(function(a, b){
+        var x = a.description.toLowerCase();
+        var y = b.description.toLowerCase();
+        if (x < y) {return -1;}
+        if (x > y) {return 1;}
+        return 0;
+      });
+    } else {
+      this.state.currentList.items.sort(function(b, a){
+        var x = a.description.toLowerCase();
+        var y = b.description.toLowerCase();
+        if (x < y) {return -1;}
+        if (x > y) {return 1;}
+        return 0;
+      });
+    }
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
+  sortByDueDate = (bool) => {
+    if(bool) {
+      this.state.currentList.items.sort(function(a, b){
+        var x = a.due_date;
+        var y = b.due_date;
+        if (x < y) {return -1;}
+        if (x > y) {return 1;}
+        return 0;
+      });
+    } else {
+      this.state.currentList.items.sort(function(b, a){
+        var x = a.due_date;
+        var y = b.due_date;
+        if (x < y) {return -1;}
+        if (x > y) {return 1;}
+        return 0;
+      });
+    }
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
+  sortByCompleted = (bool) => {
+    if(bool) {
+      this.state.currentList.items.sort(function(a, b){
+      return (a.completed === b.completed)? 0 : a.completed? -1 : 1;
+    });
+    } else {
+      this.state.currentList.items.sort(function(b, a){
+        return (a.completed === b.completed)? 0 : a.completed? -1 : 1;
+      });
+    }
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
   render() {
     switch(this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
@@ -120,7 +178,10 @@ class App extends Component {
           deleteList={this.deleteList}
           deleteItem={this.deleteItem}
           moveItemUp={this.moveItemUp}
-          moveItemDown={this.moveItemDown} />;
+          moveItemDown={this.moveItemDown}
+          sortByTask={this.sortByTask}
+          sortByDueDate={this.sortByDueDate}
+          sortByCompleted={this.sortByCompleted} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
           goHome={this.goHome.bind(this)}
