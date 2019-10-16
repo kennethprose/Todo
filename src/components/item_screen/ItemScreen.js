@@ -42,9 +42,9 @@ export class ItemScreen extends Component {
         return (
             <div id="list_item_add_card">
                 <div id="list_item_add_header">Item</div>
-                Description: <input type="text" id="description_text" value={this.state.description} onChange={this.changeDescription}></input><br/>
-                Assigned To: <input type="text" id="assignedTo_text" value={this.state.assignedTo} onChange={this.changeAssignedTo}></input><br/>
-                Due Date: <input type="date" id="date_text" value={this.state.dueDate} onChange={this.changeDueDate}></input><br/>
+                Description:<input type="text" id="description_text" value={this.state.description} onChange={this.changeDescription}></input><br/>
+                Assigned To:<input type="text" id="assignedTo_text" value={this.state.assignedTo} onChange={this.changeAssignedTo}></input><br/>
+                Due Date:<input type="date" id="date_text" value={this.state.dueDate} onChange={this.changeDueDate}></input><br/>
                 Completed:<input type="checkbox" id="complete_checkbox" onChange={this.changeCompleted}></input><br/>
                 <button type="button" id="add_submit_button" onClick={this.onSubmit}>Submit</button><button type="button" id="cancel_button" onClick={this.onCancel}>Cancel</button>
             </div>

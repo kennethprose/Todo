@@ -25,12 +25,12 @@ export class ListTrash extends Component {
                 { this.state.showPopup ?
                     <div id="popup" className='showing'>
                         <div id="popup_content" className='showing'>
-                            <div id="popup_question1">Delete List?</div>
-                            <strong id="popup_question2">Are you sure you want to delete this list?</strong>
+                            <div id="popup_question1">Delete List?</div><br/>
+                            <strong id="popup_question2">Are you sure you want to delete this list?</strong><br/><br/>
                             <div id="popup_options">
                                 <div id="popup_yes" onClick={this.deleteList.bind(this)}>Yes</div>
                                 <div id="popup_no" onClick={this.onClick.bind(this)}>No</div>
-                            </div>
+                            </div><br/>
                             <div id="popup_warning">The list will not be retreivable.</div>
                         </div>
                     </div> 

@@ -24,7 +24,9 @@ body {
   grid-row: 1 / span 2;
 }
 #home_your_lists_heading {}
-#home_your_lists_list {}
+#home_your_lists_list {
+  line-height: 50px;
+}
 #home_banner_container {
   grid-column: 2 / span 2;
   grid-row: 1 / span 1;
@@ -72,12 +74,10 @@ body {
 #list_details_owner_container {}
 #list_owner_prompt {}
 #list_owner_textfield {}
-#list_items_container {
-  position: relative;
-}
+#list_items_container {}
 
 /* LIST SCREEN CLASSES */
-.list_item_card, .list_item_add_card, .list_item_header_card {
+.list_item_card, .list_item_header_card {
   position: relative;
   height: 50px;
   grid-row-gap: 0px;
@@ -86,6 +86,13 @@ body {
   margin-bottom: 5px;
   border-radius: 5px;
   cursor: pointer;
+}
+.list_item_add_card {
+  font-size: 30px;
+  text-align: center;
+  line-height: 30px;
+  height: 40px;
+  cursor: pointer
 }
 .list_item_card_description {
   position: absolute;
@@ -185,7 +192,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(250, 246, 217);
-    width: 400px;
+    width: 450px;
     height: 210px;
     padding-top: 10px;
     padding-left: 10px;
@@ -198,7 +205,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(250, 246, 217);
-    width: 400px;
+    width: 450px;
     height: 210px;
     padding-top: 10px;
     padding-left: 10px;
@@ -248,7 +255,7 @@ body {
   right: 5px;
   text-align: center;
   font-size: 30px;
-  border-radius: 5px;
+  border-radius: 7px;
   margin: 1%;
   background-color: #669966;
   height: 45px;
@@ -262,7 +269,7 @@ body {
   right: 5px;
   text-align: center;
   font-size: 30px;
-  border-radius: 5px;
+  border-radius: 7px;
   margin: 1%;
   background-color: #D0D0D0;
   height: 45px;
@@ -283,40 +290,53 @@ body {
 }
 
 #list_item_add_card {
-  height: 250px;
+  height: 240px;
   width: 100%;
   background-color: #E6E6E6;
+  padding-left: 10px;
+  padding-top: 10px;
+  min-width: 11500px;
 }
 
 #description_text, #assignedTo_text, #date_text {
   position: relative;
   font-size: 20px;
   width: 80%;
-  right: 0;
   margin-top: 12px;
+}
+
+#description_text {
+  left: 80px;
+}
+
+#assignedTo_text {
+  left: 77px;
+}
+
+#date_text {
+  left: 102px;
 }
 
 #complete_checkbox {
   position: relative;
-  left: 5%;
+  left: 89px;
   transform: scale(2);
   margin-top: 18px;
 }
 
 #add_submit_button {
+  position: absolute;
   transform: scale(1.25);
-  margin-left: 20px;
+  margin-left: 5px;
   border-radius: 5px;
-  position: relative;
-  top: 20px;
-  left: 0px;
-  visibility: visible;
+  bottom: 12px;
 }
 
 #cancel_button {
+  position: absolute;
   transform: scale(1.25);
-  margin-left: 20px;
+  margin-left: 15px;
   border-radius: 5px;
-  position: relative;
-  top: 20px;
+  bottom: 12px;
+  left: 85px;
 }
