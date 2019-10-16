@@ -15,7 +15,11 @@ export class ItemScreen extends Component {
     }
 
     onSubmit = () => {
-        this.props.onSubmitAdd(this.state.description, this.state.assignedTo, this.state.dueDate, this.state.completed)
+        if(this.state.description == "") {
+            alert("This item must have a description!")
+        } else {
+            this.props.onSubmitAdd(this.state.description, this.state.assignedTo, this.state.dueDate, this.state.completed)
+        }
     }
 
     changeDescription = (e) => {
