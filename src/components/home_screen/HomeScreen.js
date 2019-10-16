@@ -8,8 +8,8 @@ export class HomeScreen extends Component {
     newList = () => {
         this.props.todoLists.push({
             "key": this.props.todoLists.length,
-            "name": "Name",
-            "owner": "Owner",
+            "name": "",
+            "owner": "",
             "items": []
         })
         this.props.loadList(this.props.todoLists[this.props.todoLists.length - 1])

@@ -25,11 +25,18 @@ export class ListScreen extends Component {
     onChangeOwner = (e) => {
         e.preventDefault();
         this.props.todoList.owner = e.target.value; }
+    goHome = () => {
+        if(this.props.todoList.name == "") {
+            alert("This list must have a name!")
+        } else {
+            this.props.goHome()
+        }
+    }
     render() {
         return (
             <div id="todo_list">
                 <div>
-                    <ListHeading goHome={this.props.goHome} />
+                    <ListHeading goHome={this.goHome} />
                     <ListTrash todoList={this.props.todoList} deleteList={this.props.deleteList}/>
                 </div>
                 <div id="list_details_container">
