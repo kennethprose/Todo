@@ -3,7 +3,6 @@ import ListHeading from './ListHeading'
 import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
 import nameTransaction from '../../lib/nameTransaction'
-import jsTPS from '../../lib/jsTPS'
 
 export class ListScreen extends Component {
     getListName() {
@@ -77,7 +76,8 @@ export class ListScreen extends Component {
                     goEditItemScreen={this.props.goEditItemScreen}
                     sortByTask={this.props.sortByTask}
                     sortByDueDate={this.props.sortByDueDate}
-                    sortByCompleted={this.props.sortByCompleted} />
+                    sortByCompleted={this.props.sortByCompleted}
+                    tps={this.props.tps} />
             </div>
         )
     }
