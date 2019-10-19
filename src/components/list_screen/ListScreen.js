@@ -38,9 +38,9 @@ export class ListScreen extends Component {
     keyPress = (event) => {
         let charCode = String.fromCharCode(event.which).toLowerCase();
         if(event.ctrlKey && charCode === 'z') {
-            console.log("worked");
+            this.props.tps.undoTransaction();
         } else if(event.ctrlKey && charCode === 'y') {
-            console.log("this works too");
+            this.props.tps.doTransaction();
         }
     }
     render() {
