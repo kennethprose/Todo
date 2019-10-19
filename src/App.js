@@ -4,6 +4,7 @@ import HomeScreen from './components/home_screen/HomeScreen'
 import ItemScreen from './components/item_screen/ItemScreen'
 import EditItemScreen from './components/item_screen/EditItemScreen'
 import ListScreen from './components/list_screen/ListScreen'
+import jsTPS from './lib/jsTPS'
 
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
@@ -17,7 +18,8 @@ class App extends Component {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
     currentList: null,
-    currentItem: -1
+    currentItem: -1,
+    tps: new jsTPS
   }
 
   goHome = () => {
@@ -181,7 +183,8 @@ class App extends Component {
           moveItemDown={this.moveItemDown}
           sortByTask={this.sortByTask}
           sortByDueDate={this.sortByDueDate}
-          sortByCompleted={this.sortByCompleted} />;
+          sortByCompleted={this.sortByCompleted}
+          tps={this.state.tps} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
           goHome={this.goHome.bind(this)}

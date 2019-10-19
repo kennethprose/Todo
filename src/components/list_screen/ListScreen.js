@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import ListHeading from './ListHeading'
 import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
-import PropTypes from 'prop-types';
+import nameTransaction from '../../lib/nameTransaction'
+import jsTPS from '../../lib/jsTPS'
 
 export class ListScreen extends Component {
     getListName() {
@@ -21,6 +22,8 @@ export class ListScreen extends Component {
     }
     onChangeName = (e) => {
         e.preventDefault();
+        var transaction = new nameTransaction(this.props.todoList.name, this.props.todoList.name, e.target.value);
+        this.props.tps.addTransaction(transaction);
         this.props.todoList.name = e.target.value; }
     onChangeOwner = (e) => {
         e.preventDefault();
@@ -32,9 +35,17 @@ export class ListScreen extends Component {
             this.props.goHome()
         }
     }
+    keyPress = (event) => {
+        let charCode = String.fromCharCode(event.which).toLowerCase();
+        if(event.ctrlKey && charCode === 'z') {
+            console.log("worked");
+        } else if(event.ctrlKey && charCode === 'y') {
+            console.log("this works too");
+        }
+    }
     render() {
         return (
-            <div id="todo_list">
+            <div id="todo_list" onKeyDown={this.keyPress}>
                 <div>
                     <ListHeading goHome={this.goHome} />
                     <ListTrash todoList={this.props.todoList} deleteList={this.props.deleteList}/>
