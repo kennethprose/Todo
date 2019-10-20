@@ -8,6 +8,7 @@ import jsTPS from './lib/jsTPS'
 import nameTransaction from './lib/nameTransaction'
 import ownerTransaction from './lib/ownerTransaction'
 import listTransaction from './lib/listTransaction.js';
+import upDownTransaction from './lib/upDownTransaction'
 
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
@@ -26,6 +27,7 @@ class App extends Component {
   }
 
   goHome = () => {
+    this.state.tps.clearAllTransactions();
     this.setState({currentScreen: AppScreen.HOME_SCREEN});
     this.setState({currentList: null});
   }
@@ -72,15 +74,10 @@ class App extends Component {
   }
 
   moveItemUp = (key) => {
-    var initList = this.state.currentList.items;
-    console.log(initList);
     var temp = this.state.currentList.items[key];
     this.state.currentList.items[key] = this.state.currentList.items[key - 1];
     this.state.currentList.items[key - 1] = temp;
     this.reIndexListItems();
-    console.log(initList);
-    var transaction = new listTransaction(this.state.currentList, initList, this.state.currentList.items);
-    this.state.tps.addTransaction(transaction);
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
