@@ -15,6 +15,7 @@ body {
 }
 #todo_list {
   z-index: 1;
+  outline-width: 0px;
 }
 #todo_item {}
 

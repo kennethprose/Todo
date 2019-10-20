@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ListHeading from './ListHeading'
 import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
-import nameTransaction from '../../lib/nameTransaction'
+import ownerTransaction from '../../lib/ownerTransaction'
 
 export class ListScreen extends Component {
     getListName() {
@@ -21,12 +21,12 @@ export class ListScreen extends Component {
     }
     onChangeName = (e) => {
         e.preventDefault();
-        var transaction = new nameTransaction(this.props.todoList.name, this.props.todoList.name, e.target.value);
-        this.props.tps.addTransaction(transaction);
-        this.props.todoList.name = e.target.value; }
+        this.props.nameChange(e);
+        /*this.props.todoList.name = e.target.value;*/ }
     onChangeOwner = (e) => {
         e.preventDefault();
-        this.props.todoList.owner = e.target.value; }
+        this.props.ownerChange(e);
+        /*this.props.todoList.owner = e.target.value;*/ }
     goHome = () => {
         if(this.props.todoList.name == "") {
             alert("This list must have a name!")
@@ -37,14 +37,16 @@ export class ListScreen extends Component {
     keyPress = (event) => {
         let charCode = String.fromCharCode(event.which).toLowerCase();
         if(event.ctrlKey && charCode === 'z') {
-            this.props.tps.undoTransaction();
+            event.preventDefault();
+            this.props.undoTransaction();
         } else if(event.ctrlKey && charCode === 'y') {
-            this.props.tps.doTransaction();
+            event.preventDefault();
+            this.props.doTransaction();
         }
     }
     render() {
         return (
-            <div id="todo_list" onKeyDown={this.keyPress}>
+            <div id="todo_list" tabIndex="0" onKeyDown={this.keyPress}>
                 <div>
                     <ListHeading goHome={this.goHome} />
                     <ListTrash todoList={this.props.todoList} deleteList={this.props.deleteList}/>

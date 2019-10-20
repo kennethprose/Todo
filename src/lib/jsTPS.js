@@ -67,7 +67,7 @@ export default class jsTPS {
             this.preformingUndo = true;
             var transaction = this.transactions[this.mostRecentTransaction];
             transaction.undoTransaction();
-            this.mostRecentTransaction--;
+            this.mostRecentTransaction = this.mostRecentTransaction - 1;
             this.preformingUndo = false;
         }
     }

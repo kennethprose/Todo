@@ -1,15 +1,16 @@
 export default class nameTransaction {
-    constructor(initlistName, initoldName, initnewName) {
-        this.listName = initlistName;
+    constructor(initlist, initoldName, initnewName) {
+        this.list = initlist;
         this.oldName = initoldName;
         this.newName = initnewName;
     }
 
     doTransaction() {
-        this.listName = this.newName;
+        this.list.name = this.newName;
     }
 
     undoTransaction() {
-        this.listName = this.oldName;
+        this.list.name = this.oldName;
+        document.getElementById("list_name_textfield").value = this.oldName;
     }
 }

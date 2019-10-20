@@ -5,6 +5,8 @@ import ItemScreen from './components/item_screen/ItemScreen'
 import EditItemScreen from './components/item_screen/EditItemScreen'
 import ListScreen from './components/list_screen/ListScreen'
 import jsTPS from './lib/jsTPS'
+import nameTransaction from './lib/nameTransaction'
+import ownerTransaction from './lib/ownerTransaction'
 
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
@@ -162,7 +164,28 @@ class App extends Component {
       });
     }
     this.reIndexListItems();
-    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
+  }
+
+  addTransaction = (transaction) => {
+    this.state.tps.addTransaction(transaction);
+  }
+
+  undoTransaction = () => {
+    this.state.tps.undoTransaction();
+  }
+
+  doTransaction = () => {
+    this.state.tps.doTransaction();
+  }
+
+  nameChange = (e) => {
+    var transaction = new nameTransaction(this.state.currentList, this.state.currentList.name, e.target.value);
+    this.addTransaction(transaction);
+  }
+
+  ownerChange = (e) => {
+    var transaction = new ownerTransaction(this.state.currentList, this.state.currentList.owner, e.target.value);
+    this.addTransaction(transaction);
   }
 
   render() {
@@ -184,7 +207,12 @@ class App extends Component {
           sortByTask={this.sortByTask}
           sortByDueDate={this.sortByDueDate}
           sortByCompleted={this.sortByCompleted}
-          tps={this.state.tps} />;
+          tps={this.state.tps}
+          addTransaction={this.addTransaction}
+          undoTransaction={this.undoTransaction}
+          doTransaction={this.doTransaction}
+          nameChange={this.nameChange}
+          ownerChange={this.ownerChange} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
           goHome={this.goHome.bind(this)}
