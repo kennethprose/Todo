@@ -7,6 +7,7 @@ import ListScreen from './components/list_screen/ListScreen'
 import jsTPS from './lib/jsTPS'
 import nameTransaction from './lib/nameTransaction'
 import ownerTransaction from './lib/ownerTransaction'
+import listTransaction from './lib/listTransaction.js';
 
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
@@ -62,16 +63,24 @@ class App extends Component {
   }
 
   deleteItem = (key) => {
+    var initList = this.state.currentList.items;
     this.state.currentList.items = this.state.currentList.items.filter(item => item.key !== key);
     this.reIndexListItems();
+    var transaction = new listTransaction(this.state.currentList, initList, this.state.currentList.items);
+    this.state.tps.addTransaction(transaction);
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
   moveItemUp = (key) => {
+    var initList = this.state.currentList.items;
+    console.log(initList);
     var temp = this.state.currentList.items[key];
     this.state.currentList.items[key] = this.state.currentList.items[key - 1];
     this.state.currentList.items[key - 1] = temp;
     this.reIndexListItems();
+    console.log(initList);
+    var transaction = new listTransaction(this.state.currentList, initList, this.state.currentList.items);
+    this.state.tps.addTransaction(transaction);
     this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
@@ -172,10 +181,14 @@ class App extends Component {
 
   undoTransaction = () => {
     this.state.tps.undoTransaction();
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
   doTransaction = () => {
     this.state.tps.doTransaction();
+    this.reIndexListItems();
+    this.setState({ currentScreen: AppScreen.LIST_SCREEN});
   }
 
   nameChange = (e) => {
